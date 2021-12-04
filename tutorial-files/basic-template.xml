@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  
+  <title><data:blog.title/></title>
+  <meta name='viewport' content='initial-scale=1,width=device-width'/>
+  <b:skin></b:skin>
+  
+</head>
+<body>
+  
+  <b:section id='main'>
+    <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog' version='2' visible='true'>
+      <b:includable id='main'>
+        
+        <!--         
+        written in divless-HTML format, read more here :
+        https://github.com/tmpmachine/divless-html
+         -->
+        
+        [ul
+          [li
+            [a expr:href='data:blog.homepageUrl' 'Homepage']
+          ]
+        ]
+      
+        <b:if cond='data:view.isHomepage'>
+          
+          <b:loop values='data:posts' var='post'>
+            [
+              [a expr:href='data:post.url'
+                <data:post.title/>
+              ]
+            ]
+          </b:loop>
+          
+        <b:else/>
+        
+          <b:loop values='data:posts' var='post'>
+            [h1
+              <data:post.title/>
+            ]    
+            [
+              <data:post.body/>
+            ]
+          </b:loop>
+          
+        </b:if>
+      
+        
+      </b:includable>
+    </b:widget>
+  </b:section>
+  
+</body>
+</html>
