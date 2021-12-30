@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='https://pacolemon.blogspot.com/' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+
+  <b:if cond='data:view.isSingleItem or data:view.isHomepage'>
+    <title><b:eval expr='data:blog.pageName ? (data:blog.pageName + " - " + data:blog.title.escaped) : data:blog.title.escaped'/></title>
+    <meta property="og:title" expr:content='data:blog.pageName ? (data:blog.pageName + " - " + data:blog.title) : data:blog.title'/>
+    <b:if cond='data:view.isHomepage'>
+      <meta property="og:description" expr:content="data:view.description"/>
+      <meta name="description" expr:content="data:view.description"/>
+    </b:if>
+    <meta property="og:url" expr:content="data:view.url"/>
+    <meta property="og:site_name" expr:content="data:blog.title"/>
+    
+  <b:elseif cond='data:view.isSearch'/>
+    <b:if cond='data:view.search.label'>
+      <b:include name='searchLabelPage.title-and-meta'/>
+    <b:elseif cond='data:view.search.query'/>
+      <title><b:eval expr='"Search result : " + data:view.search.query.escaped'/></title>
+    <b:else/>
+      <title><data:messages.olderPosts/></title>
+    </b:if>
+
+  <b:elseif cond='data:view.isArchive'/>
+    <title><data:messages.blogArchive/> : <data:blog.pageName/></title>
+  
+  <b:else/>
+    <title>404 : Page not found - <data:blog.title/></title>
+    <meta property="og:title" expr:content='"404 : Page not found - " + data:blog.title'/>
+    <meta property="og:description" content="The page that you are looking had been moved, deleted, or never existed"/>
+    <meta name="description" content="The page that you are looking had been moved, deleted, or never existed"/>
+    
+  </b:if>
+
+  <b:skin></b:skin>
+  
+  <meta name="viewport" content="width=device-width"/>
+  <meta charset="UTF-8"/>
+  <meta content='website' property='og:type'/>
+  <b:if cond='data:view.isArchive'>
+    <meta content='noindex, noarchive' name='robots'/>
+  </b:if>
+  
+  <b:if cond='data:view.isPreview'>
+    <style>
+      .blogger-clickTrap{display:none}
+    </style>
+  </b:if>
+  
+</head>
+<body>
+  
+  <b:section id='main'>
+    <b:widget id='Blog1' locked='false' type='Blog' version='2' visible='true'>
+      <b:includable id='main'>
+      
+        <b:if cond='data:view.isError'>
+          Error page
+        <b:elseif cond='data:view.isHomepage || data:view.isSearch'/>
+          
+          <b:if cond='data:posts.length == 0'>
+            No posts to show.
+          <b:else/>
+          
+            <!-- 
+              read more: https://pacolemon.blogspot.com/2020/06/how-to-filter-blogger-posts-blogger.html?showComment=1640896921105#c1548674206689306060 
+            -->
+            Posts labeled with both "Music" and "Jazz"
+            <b:loop values='data:posts where (post => post.labels count (label => label.name in {"Music", "Jazz"}) == 2)' 
+                  var='post'>
+              <div>
+                <a expr:href='data:post.url'><data:post.title/></a>
+              </div>
+            </b:loop>
+          
+            <hr></hr>
+          
+            Displaying all posts
+            
+            <b:loop values='data:posts' var='post'>
+              <div>
+                <a expr:href='data:post.url'><data:post.title/></a>
+              </div>
+            </b:loop>
+            
+          </b:if>
+
+        <b:else/>
+          Other page
+        </b:if>
+        
+      </b:includable>
+      
+    </b:widget>
+  </b:section>
+  
+</body>
+</html>
