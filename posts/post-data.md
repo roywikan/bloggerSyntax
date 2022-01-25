@@ -6,7 +6,7 @@
   <img expr:src='data:post.thumbnailUrl'/> 
   
   <!--  post url -->
-  <a expr:src='data:post.url'/> <data:post.url/> </a> 
+  <a expr:src='data:post.url'> <data:post.url/> </a> 
   
   <!-- post content -->
   <h1><data:post.title/></h1>
