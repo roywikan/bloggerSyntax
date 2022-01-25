@@ -1,0 +1,8 @@
+<b:if cond='data:newerPageUrl == ""'>  
+  <a class='newer-page-link' expr:href='data:newerPageUrl'>&lt; Homepage</a>
+<b:else/>
+  <a class='newer-page-link' expr:href='data:newerPageUrl'>&lt; Newer post</a>
+</b:if>
+<b:if cond='data:olderPageUrl'>
+  <a class="older-page-link" expr:href='data:olderPageUrl'>Older post &gt;</a>
+</b:if>
